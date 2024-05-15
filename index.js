@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-// const registerRouter = require("./auth/routers/register.router");
-// const loginRouter = require("./auth/routers/login.router");
+const registerRouter = require("./auth/routers/register.router");
+const loginRouter = require("./auth/routers/login.router");
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -39,8 +39,8 @@ app.get("/api/hello/:name", (req, res) => {
   res.send(`Hello, ${name}!`);
 });
 
-// app.use(registerRouter);
-// app.use(loginRouter);
+app.use(registerRouter);
+app.use(loginRouter);
 
 // Start the server
 app.listen(port, () => {
