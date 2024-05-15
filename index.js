@@ -1,6 +1,23 @@
 const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const registerRouter = require("./auth/routers/register.router");
+const loginRouter = require("./auth/routers/login.router");
 const app = express();
 const port = process.env.PORT || 5000;
+
+app.use(cors());
+
+mongoose
+  .connect(
+    "mongodb+srv://Junior:test01@cluster0.46lb860.mongodb.net/Tripify?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("Database connected");
+  })
+  .catch((e) => {
+    console.error("Database connection failed:", e);
+  });
 
 // Endpoint 1: Root endpoint
 app.get("/", (req, res) => {
@@ -21,6 +38,9 @@ app.get("/api/hello/:name", (req, res) => {
   const name = req.params.name;
   res.send(`Hello, ${name}!`);
 });
+
+app.use(registerRouter);
+app.use(loginRouter);
 
 // Start the server
 app.listen(port, () => {
