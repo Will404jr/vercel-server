@@ -3,6 +3,13 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const registerRouter = require("./auth/routers/register.router");
 const loginRouter = require("./auth/routers/login.router");
+const busRouter = require("./bus/routers/bus.router");
+const displayBusRouter = require("./bus/routers/displayBus.router");
+const editBusRouter = require("./bus/routers/editbus.router");
+const bookingsRouter = require("./bookings/routers/bookings.router");
+const packageRouter = require("./packages/routers/packages.router");
+const lostRouter = require("./lostAndFound/routers/lost.router");
+const otpRouter = require("./OTP/otp.router");
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -46,8 +53,26 @@ app.get("/api/hello/:name", (req, res) => {
   res.send(`Hello, ${name}!`);
 });
 
+//Authentication
 app.use(registerRouter);
 app.use(loginRouter);
+
+//Buses
+app.use(busRouter);
+app.use(displayBusRouter);
+app.use(editBusRouter);
+
+//Bookings
+app.use(bookingsRouter);
+
+//Packages
+app.use(packageRouter);
+
+//LostandFound
+app.use(lostRouter);
+
+//OTP
+app.use(otpRouter);
 
 // Start the server
 app.listen(port, () => {
