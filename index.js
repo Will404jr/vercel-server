@@ -6,7 +6,12 @@ const loginRouter = require("./auth/routers/login.router");
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+const corsConfig = {
+  origin: "*",
+  Credential: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+};
+app.use(cors(corsConfig));
 
 mongoose
   .connect(
