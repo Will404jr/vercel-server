@@ -6,6 +6,7 @@ const loginRouter = require("./auth/routers/login.router");
 const app = express();
 const port = process.env.PORT || 5000;
 
+app.use(express.json({ limit: "10mb" }));
 const corsConfig = {
   origin: "*",
   credential: true,
