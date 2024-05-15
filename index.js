@@ -8,9 +8,10 @@ const port = process.env.PORT || 5000;
 
 const corsConfig = {
   origin: "*",
-  Credential: true,
+  credential: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 };
+app.options("", cors(corsConfig));
 app.use(cors(corsConfig));
 
 mongoose
