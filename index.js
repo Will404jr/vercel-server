@@ -20,7 +20,7 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json({ limit: "10mb" }));
 const corsConfig = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "https://tripify-com.vercel.app"],
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 };
