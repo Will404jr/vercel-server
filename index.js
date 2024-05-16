@@ -10,6 +10,11 @@ const bookingsRouter = require("./bookings/routers/bookings.router");
 const packageRouter = require("./packages/routers/packages.router");
 const lostRouter = require("./lostAndFound/routers/lost.router");
 const otpRouter = require("./OTP/otp.router");
+const adminEmailRouter = require("./adminEmail/mail.router");
+const bookingClearanceRouter = require("./bookingClearance/bookingClearance.router");
+const packageClearanceRouter = require("./packageClearance/packageClearance.router");
+const bookingMailRouter = require("./bookingEmail/mail.router");
+const packageMailRouter = require("./packageEmail/mail.router");
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -73,6 +78,17 @@ app.use(lostRouter);
 
 //OTP
 app.use(otpRouter);
+
+//Send credentials to new admin
+app.use(adminEmailRouter);
+
+//Bookings and packages clearance
+app.use(bookingClearanceRouter);
+app.use(packageClearanceRouter);
+
+//Ticket emails
+app.use(bookingMailRouter);
+app.use(packageMailRouter);
 
 // Start the server
 app.listen(port, () => {
